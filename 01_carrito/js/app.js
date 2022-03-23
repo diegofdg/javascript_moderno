@@ -27,7 +27,21 @@ function leerDatosCurso(curso) {
         cantidad: 1
     }
 
-    articulosCarrito = [...articulosCarrito, infoCurso];
+    const existeCarrito = articulosCarrito.some (curso => curso.id === infoCurso.id);
+
+    if(existeCarrito) {
+        const cursos = articulosCarrito.map(curso => {
+            if(curso.id === infoCurso.id) {
+                curso.cantidad++;
+                return curso;
+            } else {
+                return curso;
+            }
+        });
+        articulosCarrito = [...cursos];
+    } else {
+        articulosCarrito = [...articulosCarrito, infoCurso];
+    }
 
     carritoHTML();
 }
