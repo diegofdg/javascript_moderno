@@ -7,4 +7,5 @@ Este repositorio contiene todos los proyectos incluidos en el curso "JavaScript 
 ## **Proyectos del curso**
 <ol>
     <li><a href="https://ddg-carrito.netlify.app/">Proyecto Carrito de Compras</a></li>
+    <li><a href="https://ddg-email.netlify.app/">Proyecto Envío de Emails</a></li>
 </ol>
