@@ -1,7 +1,11 @@
 const resultado = document.querySelector('#resultado');
+const year = document.querySelector('#year');
+const max = new Date().getFullYear();
+const min = max - 10;
 
 document.addEventListener('DOMContentLoaded', () => {
     mostrarAutos();
+    llenarSelect();
 });
 
 function mostrarAutos() {    
@@ -16,4 +20,13 @@ function mostrarAutos() {
 
         resultado.appendChild(autoHtml);        
     });
+}
+
+function llenarSelect() {
+    for(let i = max; i >= min; i--) {
+        const opcion = document.createElement('option');
+        opcion.value = i;
+        opcion.textContent = i;
+        year.appendChild(opcion);
+    }
 }
