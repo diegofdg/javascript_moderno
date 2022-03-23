@@ -1,4 +1,5 @@
 const btnEnviar = document.querySelector('#enviar');
+const btnReset = document.querySelector('#resetBtn');
 const formulario = document.querySelector('#enviar-mail');
 const email = document.querySelector('#email');
 const asunto = document.querySelector('#asunto');
@@ -12,6 +13,8 @@ function eventListeners() {
     email.addEventListener('blur', validarFormulario);
     asunto.addEventListener('blur', validarFormulario);
     mensaje.addEventListener('blur', validarFormulario);
+    btnReset.addEventListener('click', resetearFormulario);
+    btnEnviar.addEventListener('click', enviarEmail);
 }
 
 function iniciarApp() {
@@ -61,11 +64,38 @@ function validarFormulario(e){
 function mostrarError(mensaje) {
     const mensajeError = document.createElement('p');
     mensajeError.textContent = mensaje;
-    mensajeError.classList.add('border', 'border-red-500', 'background-red-100', 'text-red-500', 'p-3', 'mt-5', 'text-center', 'error');
+    mensajeError.classList.add('border', 'border-red-500', 'bg-red-100', 'text-red-500', 'p-3', 'mt-5', 'text-center', 'error');
 
     const errores = document.querySelectorAll('.error');
 
     if(errores.length === 0) {
         formulario.appendChild(mensajeError);
     }
+}
+
+function enviarEmail(e) {
+    e.preventDefault();
+    const spinner = document.querySelector('#spinner');
+    spinner.style.display = 'flex';
+
+    setTimeout(() => {
+        spinner.style.display = 'none';
+
+        const parrafo = document.createElement('p');
+        parrafo.textContent = 'El mensaje se envió correctamente.';
+        parrafo.classList.add('text-center', 'my-10', 'p-2', 'bg-green-500', 'text-white',  'font-bold', 'uppercase');
+
+        formulario.insertBefore(parrafo, spinner);
+
+        setTimeout(() => {
+            parrafo.remove();
+            resetearFormulario(e);
+        }, 5000);
+
+    }, 3000);
+}
+
+function resetearFormulario() {          
+    formulario.reset();
+    iniciarApp();
 }
