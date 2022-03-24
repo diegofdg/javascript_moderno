@@ -17,7 +17,14 @@ function agregarTweet(e) {
         return;
     }
 
-    console.log('Agregando tweet');
+    const tweetObj = {
+        id: Date.now(),
+        tweet
+    }
+
+    tweets = [...tweets, tweetObj];
+    crearHtml();
+    formulario.reset();
 }
 
 function mostrarError(error) {
@@ -31,4 +38,22 @@ function mostrarError(error) {
     setTimeout(()=> {
         mensajeError.remove();
     }, 3000);
+}
+
+function crearHtml() {
+    limpiarHtml();
+    
+    if(tweets.length > 0) {
+        tweets.forEach( tweet => {
+            const li = document.createElement('li');            
+            li.innerText = tweet.tweet;
+            listaTweets.appendChild(li);
+        });
+    }
+}
+
+function limpiarHtml() {
+    while(listaTweets.firstChild) {
+        listaTweets.removeChild(listaTweets.firstChild);
+    }
 }
