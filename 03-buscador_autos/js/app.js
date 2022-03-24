@@ -92,7 +92,11 @@ function llenarSelect() {
 
 function filtrarAuto() {
     const resultado = autos.filter(filtrarMarca).filter(filtrarYear).filter(filtraMinino).filter(filtrarMaximo).filter(filtrarPuertas).filter(filtrarTransmision).filter(filtrarColor);
-    mostrarAutos(resultado);
+    if(resultado.length) {
+        mostrarAutos(resultado);            
+    } else {
+        noResultado();
+    }
 }
 
 function filtrarMarca(auto) {
@@ -149,4 +153,13 @@ function filtrarColor(auto) {
         return auto.color === color;
     }
     return auto;
+}
+
+function noResultado() {
+    limpiarHtml();
+
+    const noResultado = document.createElement('div');
+    noResultado.classList.add('alerta', 'error');
+    noResultado.textContent = 'No hay Resultados, intenta con otros términos de búsqueda';
+    resultado.appendChild(noResultado);
 }
