@@ -68,6 +68,46 @@ UI.prototype.mostrarMensaje = (mensaje, tipo) => {
     }, 3000);
 }
 
+UI.prototype.mostrarResultado = function(total, seguro) {
+    const { marca, year, tipo } = seguro;    
+    let textoMarca;
+
+    switch(marca) {
+        case '1':
+            textoMarca = 'Americano';
+            break;
+        case '2':
+            textoMarca = 'Asiatico';
+            break;
+        case '3':
+            textoMarca = 'Europeo';
+            break;
+        default:
+            break;
+    }
+    
+    const div = document.createElement('div');
+    div.classList.add('mt-10');
+    
+    div.innerHTML = `
+        <p class='header'>Tu Resumen: </p>
+        <p class="font-bold">Marca: <span class="font-normal"> ${textoMarca} </span> </p>
+        <p class="font-bold">Año: <span class="font-normal"> ${year} </span> </p>
+        <p class="font-bold">Tipo: <span class="font-normal capitalize"> ${tipo} </span> </p>
+        <p class="font-bold">Total: <span class="font-normal"> $ ${total} </span> </p>
+    `;
+
+    const resultadoDiv = document.querySelector('#resultado');
+
+    const spinner = document.querySelector('#cargando');
+    spinner.style.display = 'block';
+
+    setTimeout( () =>  {
+         spinner.style.display = 'none';
+         resultadoDiv.appendChild(div);
+    }, 3000);    
+}
+
 const ui = new UI();
 
 document.addEventListener('DOMContentLoaded', () => {
@@ -95,6 +135,13 @@ function cotizarSeguro(e) {
 
     ui.mostrarMensaje('Cotizando...', 'exito');
 
+    const resultados = document.querySelector('#resultado div');
+    if(resultados !== null) {
+        resultados.remove();
+    }
+
     const seguro = new Seguro(marca, year, tipo);
-    seguro.cotizarSeguro();
+    const total = seguro.cotizarSeguro();
+
+    ui.mostrarResultado(total, seguro);
 }
