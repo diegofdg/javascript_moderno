@@ -10,4 +10,5 @@ Este repositorio contiene todos los proyectos incluidos en el curso "JavaScript 
     <li><a href="https://ddg-email.netlify.app/">Proyecto Envío de Emails</a></li>
     <li><a href="https://ddg-buscador-autos.netlify.app/">Proyecto Buscador de Autos</a></li>
     <li><a href="https://ddg-local-storage.netlify.app/">Proyecto Local Storage</a></li>
+    <li><a href="https://ddg-cotizador-seguro.netlify.app/">Proyecto Cotizador de Seguro</a></li>
 </ol>
