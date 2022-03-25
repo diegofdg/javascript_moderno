@@ -8,6 +8,36 @@ const sintomasInput = document.querySelector('#sintomas');
 const formulario = document.querySelector('#nueva-cita');
 const contenedorCitas = document.querySelector('#citas');
 
+class Citas {
+    constructor() {
+        this.citas = [];
+    }
+}
+
+class UI {
+    imprimirAlerta(mensaje, tipo) {        
+        const divMensaje = document.createElement('div');
+        divMensaje.classList.add('text-center', 'alert', 'd-block', 'col-12');
+        
+        if(tipo === 'error') {
+             divMensaje.classList.add('alert-danger');
+        } else {
+             divMensaje.classList.add('alert-success');
+        }
+        
+        divMensaje.textContent = mensaje;
+        
+        document.querySelector('#contenido').insertBefore(divMensaje, document.querySelector('.agregar-cita'));
+        
+        setTimeout( () => {
+             divMensaje.remove();
+        }, 1500);
+    }
+}
+
+const administrarCitas = new Citas();
+const ui = new UI();
+
 eventListeners();
 
 function eventListeners() {
@@ -17,6 +47,8 @@ function eventListeners() {
     fechaInput.addEventListener('input', datosCita);
     horaInput.addEventListener('input', datosCita);
     sintomasInput.addEventListener('input', datosCita);
+    
+    formulario.addEventListener('submit', nuevaCita);
 }
 
 const citaObj = {
@@ -30,4 +62,15 @@ const citaObj = {
 
 function datosCita(e) {
     citaObj[e.target.name] = e.target.value;
+}
+
+function nuevaCita(e) {
+    e.preventDefault();
+
+    const { mascota, propietario, telefono, fecha, hora, sintomas } = citaObj;
+
+    if(mascota === '' || propietario === '' || telefono === '' || fecha === '' || hora === '' || sintomas === '') {
+        ui.imprimirAlerta('Todos los campos son obligatorios',  'error');
+        return;
+    }
 }
