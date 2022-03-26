@@ -1,13 +1,5 @@
-import { datosCita, nuevaCita } from '../funciones.js';
-import { 
-    mascotaInput, 
-    propietarioInput, 
-    telefonoInput, 
-    fechaInput, 
-    horaInput, 
-    sintomasInput, 
-    formulario 
-} from '../selectores.js';
+import { datosCita, nuevaCita, crearDB } from '../funciones.js';
+import { mascotaInput, propietarioInput, telefonoInput, fechaInput, horaInput, sintomasInput, formulario } from '../selectores.js';
 
 class App {
     constructor() {        
@@ -23,6 +15,8 @@ class App {
         sintomasInput.addEventListener('input', datosCita);
     
         formulario.addEventListener('submit', nuevaCita);
+
+        crearDB();
     }
 }
 

@@ -1,7 +1,11 @@
 import { eliminarCita, cargarEdicion } from '../funciones.js';
-import { contenedorCitas } from '../selectores.js';
+import { contenedorCitas, heading } from '../selectores.js';
 
 class UI {
+    constructor({citas}) {
+        this.textoHeading(citas);
+    }
+
     imprimirAlerta(mensaje, tipo) {        
         const divMensaje = document.createElement('div');
         divMensaje.classList.add('text-center', 'alert', 'd-block', 'col-12');
@@ -23,6 +27,8 @@ class UI {
 
     imprimirCitas({ citas }) {
         this.limpiarHTML();
+        this.textoHeading(citas);
+
         citas.forEach(cita => {
             const { mascota, propietario, telefono, fecha, hora, sintomas, id } = cita;
 
@@ -80,6 +86,14 @@ class UI {
 
             contenedorCitas.appendChild(divCita);
         });
+    }
+
+    textoHeading(citas) {
+        if(citas.length > 0) {
+            heading.textContent = 'Administra tus citas';
+        } else {
+            heading.textContent = 'No hay Citas, comienza creando una';
+        }
     }
 
     limpiarHTML() {

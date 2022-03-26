@@ -3,9 +3,10 @@ import UI from './classes/UI.js';
 import { mascotaInput, propietarioInput, telefonoInput, fechaInput, horaInput, sintomasInput, formulario } from './selectores.js';
 
 const administrarCitas = new Citas();
-const ui = new UI();
+const ui = new UI(administrarCitas);
 
 let editando = false;
+let DB;
 
 const citaObj = {
     mascota: '',
@@ -86,4 +87,34 @@ export function cargarEdicion(cita) {
     formulario.querySelector('button[type="submit"]').textContent = 'Guardar Cambios';
 
     editando = true;
+}
+
+export function crearDB() {    
+    const crearDB = window.indexedDB.open('citas', 1);
+
+    crearDB.onerror = function() {
+        console.log('Hubo un error');
+    }
+
+    crearDB.onsuccess = function() {        
+        DB = crearDB.result;            
+    }
+
+    crearDB.onupgradeneeded = function(e) {
+        const db = e.target.result;
+        const objectStore = db.createObjectStore('citas', {
+            keyPath: 'id',
+            autoIncrement: true
+        });
+
+        objectStore.createIndex('mascota', 'mascota', { unique: false });
+        objectStore.createIndex('propietario', 'propietario', { unique: false });
+        objectStore.createIndex('telefono', 'telefono', { unique: false });
+        objectStore.createIndex('fecha', 'fecha', { unique: false });
+        objectStore.createIndex('hora', 'hora', { unique: false });
+        objectStore.createIndex('sintomas', 'sintomas', { unique: false });
+        objectStore.createIndex('id', 'id', { unique: true });
+
+        console.log('DB creada y lista');
+    }
 }
