@@ -19,6 +19,10 @@ class Citas {
         this.citas = [...this.citas, cita];
     }
 
+    editarCita(citaActualizada) {
+        this.citas = this.citas.map( cita => cita.id === citaActualizada.id ? citaActualizada : cita)
+    }
+
     eliminarCita(id) {
         this.citas = this.citas.filter( cita => cita.id !== id);
     }
@@ -41,7 +45,7 @@ class UI {
         
         setTimeout( () => {
              divMensaje.remove();
-        }, 1500);
+        }, 2000);
     }
 
     imprimirCitas({ citas }) {
@@ -153,6 +157,7 @@ function nuevaCita(e) {
 
     if(editando) {
         ui.imprimirAlerta('Editado Correctamente');
+        administrarCitas.editarCita( {...citaObj} );
         formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
         editando = false;
     } else {        
