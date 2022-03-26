@@ -1,6 +1,4 @@
-(function() {   
-    
-    let DB;
+(function() {
     const formulario = document.querySelector('#formulario');
 
     document.addEventListener('DOMContentLoaded', () => {
