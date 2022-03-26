@@ -58,6 +58,10 @@ export function nuevaCita(e) {
         transaction.oncomplete = function() {
             ui.imprimirAlerta('Se agregó correctamente');
         }
+
+        transaction.onerror = () => {
+            console.log('Hubo un error');
+        }
     }
 
     reiniciarObjeto();
@@ -77,11 +81,18 @@ export function reiniciarObjeto() {
 }
 
 export function eliminarCita(id) {
-    administrarCitas.eliminarCita(id);
-    
-    ui.imprimirAlerta('La cita se eliminó correctamente');
+    const transaction = DB.transaction(['citas'], 'readwrite');
+    const objectStore = transaction.objectStore('citas');
 
-    ui.imprimirCitas();
+    objectStore.delete(id);        
+    transaction.oncomplete = function() {            
+        ui.imprimirAlerta('La cita se eliminó correctamente');
+        ui.imprimirCitas();
+    }
+
+    transaction.onerror = () => {
+        console.log('Hubo un error');
+    }
 }
 
 export function cargarEdicion(cita) {
