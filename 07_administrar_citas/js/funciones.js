@@ -31,11 +31,22 @@ export function nuevaCita(e) {
         return;
     }
 
-    if(editando) {
-        ui.imprimirAlerta('Editado Correctamente');
+    if(editando) {        
         administrarCitas.editarCita( {...citaObj} );
-        formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
-        editando = false;
+        
+        const transaction = DB.transaction(['citas'], 'readwrite');
+        const objectStore = transaction.objectStore('citas');
+
+        objectStore.put(citaObj);        
+        transaction.oncomplete = function() {            
+            ui.imprimirAlerta('Editado Correctamente');            
+            formulario.querySelector('button[type="submit"]').textContent = 'Crear Cita';
+            editando = false;
+        }
+
+        transaction.onerror = () => {
+            console.log('Hubo un error');
+        }
     } else {        
         citaObj.id = Date.now();        
         administrarCitas.agregarCita({...citaObj});
@@ -45,7 +56,6 @@ export function nuevaCita(e) {
         
         objectStore.add(citaObj);
         transaction.oncomplete = function() {
-            console.log('Cita agregada');
             ui.imprimirAlerta('Se agregó correctamente');
         }
     }
