@@ -39,7 +39,15 @@ export function nuevaCita(e) {
     } else {        
         citaObj.id = Date.now();        
         administrarCitas.agregarCita({...citaObj});
-        ui.imprimirAlerta('Se agregó correctamente');
+        
+        const transaction = DB.transaction(['citas'], 'readwrite');
+        const objectStore = transaction.objectStore('citas');
+        
+        objectStore.add(citaObj);
+        transaction.oncomplete = function() {
+            console.log('Cita agregada');
+            ui.imprimirAlerta('Se agregó correctamente');
+        }
     }
 
     reiniciarObjeto();
