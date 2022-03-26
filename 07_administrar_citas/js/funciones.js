@@ -6,7 +6,7 @@ const administrarCitas = new Citas();
 const ui = new UI(administrarCitas);
 
 let editando = false;
-let DB;
+export let DB;
 
 const citaObj = {
     mascota: '',
@@ -39,7 +39,7 @@ export function nuevaCita(e) {
     } else {        
         citaObj.id = Date.now();        
         administrarCitas.agregarCita({...citaObj});
-        
+
         const transaction = DB.transaction(['citas'], 'readwrite');
         const objectStore = transaction.objectStore('citas');
         
@@ -54,7 +54,7 @@ export function nuevaCita(e) {
 
     formulario.reset();
 
-    ui.imprimirCitas(administrarCitas);
+    ui.imprimirCitas();
 }
 
 export function reiniciarObjeto() {
@@ -71,7 +71,7 @@ export function eliminarCita(id) {
     
     ui.imprimirAlerta('La cita se eliminó correctamente');
 
-    ui.imprimirCitas(administrarCitas);
+    ui.imprimirCitas();
 }
 
 export function cargarEdicion(cita) {
@@ -105,7 +105,8 @@ export function crearDB() {
     }
 
     crearDB.onsuccess = function() {        
-        DB = crearDB.result;            
+        DB = crearDB.result;    
+        ui.imprimirCitas();          
     }
 
     crearDB.onupgradeneeded = function(e) {
