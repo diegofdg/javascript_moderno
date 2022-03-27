@@ -5,6 +5,7 @@ const paginacionDiv = document.querySelector('#paginacion');
 const registrosPorPagina = 40;
 let totalPaginas;
 let iterador;
+let paginaActual = 1;
 
 window.onload = () => {
     formulario.addEventListener('submit', validarFormulario);
@@ -20,7 +21,7 @@ function validarFormulario(e) {
         return;
     }
 
-    buscarImagenes(terminoBusqueda);
+    buscarImagenes();
 }
 
 function mostrarAlerta(mensaje) {
@@ -42,9 +43,10 @@ function mostrarAlerta(mensaje) {
     }
 }
 
-function buscarImagenes(termino) {
+function buscarImagenes() {
+    const termino = document.querySelector('#termino').value;
     const key = '22323363-5b5df4ad5be481008987d9594';
-    const url = `https://pixabay.com/api/?key=${key}&q=${termino}&per_page=${registrosPorPagina}`;
+    const url = `https://pixabay.com/api/?key=${key}&q=${termino}&per_page=${registrosPorPagina}&page=${paginaActual}`;
     fetch(url)
         .then(respuesta => respuesta.json())
         .then(resultado => {
@@ -74,7 +76,7 @@ function mostrarImagenes(imagenes) {
                     <div class="p-4">
                         <p class="font-bold"> ${likes}<span class="font-light"> Me Gusta</span></p>
                         <p class="font-bold"> ${views}<span class="font-light"> Veces Vista</span></p>
-                        <a class="block w-full bg-blue-800 hover:bg-blue-500 text-white uppercase font-bold text-center mt-5 p-1" href="${largeImageURL}" target="_blank" rel="noopener noreferrer"> Ver Imagen </a>
+                        <a class="block w-full bg-blue-800 hover:bg-blue-500 text-white font-bold text-center mt-5 p-1" href="${largeImageURL}" target="_blank" rel="noopener noreferrer"> Ver Imagen </a>
                     </div>
                 </div>
             </div>            
@@ -97,6 +99,11 @@ function imprimirPaginador() {
         boton.dataset.pagina = value;
         boton.textContent = value;
         boton.classList.add('siguiente', 'bg-yellow-400', 'px-4', 'py-1', 'mr-2', 'font-bold', 'mb-4', 'uppercase', 'rounded');
+
+        boton.onclick = () => {
+            paginaActual = value;
+            buscarImagenes();
+        }
 
         paginacionDiv.appendChild(boton);        
     }
