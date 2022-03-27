@@ -16,4 +16,5 @@ Este repositorio contiene todos los proyectos incluidos en el curso "JavaScript 
     <li><a href="https://ddg-indexed-db.netlify.app/">Proyecto Administrador de Clientes con CRM</a></li>
     <li><a href="https://ddg-clima.netlify.app/">Proyecto Buscador de Clima</a></li>
     <li><a href="https://ddg-buscador-canciones.netlify.app/">Proyecto Buscador de Canciones</a></li>
+    <li><a href="https://ddg-buscador-imagenes.netlify.app/">Proyecto Buscador de Imágenes</a></li>
 </ol>
