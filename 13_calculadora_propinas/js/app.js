@@ -29,4 +29,10 @@ function guardarCliente() {
 
         return;
     }
+
+    cliente = { ...cliente, mesa, hora };
+
+    const modalFormulario = document.querySelector('#formulario');
+    const modal = bootstrap.Modal.getInstance(modalFormulario);
+    modal.hide();
 }
