@@ -110,9 +110,22 @@ function agregarPlatillo(producto) {
     let { pedido } = cliente;
 
     if (producto.cantidad > 0 ) {
-        cliente.pedido = [...pedido, producto];
+        if(pedido.some( articulo =>  articulo.id === producto.id )) {
+            const pedidoActualizado = pedido.map( articulo => {
+                if(articulo.id === producto.id) {
+                    articulo.cantidad = producto.cantidad;
+                }
+                return articulo;
+            });
+
+            cliente.pedido  = [...pedidoActualizado];
+
+        } else {
+            cliente.pedido = [...pedido, producto];
+        }
+        
     } else {
-        console.log('No es mayor a 0');        
+        console.log('No es mayor a 0');
     }
 
     console.log(cliente.pedido);
