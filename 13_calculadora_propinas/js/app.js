@@ -123,9 +123,10 @@ function agregarPlatillo(producto) {
         } else {
             cliente.pedido = [...pedido, producto];
         }
-        
+
     } else {
-        console.log('No es mayor a 0');
+        const resultado = pedido.filter(articulo => articulo.id !== producto.id);
+        cliente.pedido = resultado;
     }
 
     console.log(cliente.pedido);
