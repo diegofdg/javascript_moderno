@@ -18,5 +18,5 @@ Este repositorio contiene todos los proyectos incluidos en el curso "JavaScript 
     <li><a href="https://ddg-buscador-canciones.netlify.app/">Proyecto Buscador de Canciones</a></li>
     <li><a href="https://ddg-buscador-imagenes.netlify.app/">Proyecto Buscador de Imágenes</a></li>
     <li><a href="https://ddg-cotizador-criptomonedas.netlify.app/">Proyecto Cotizador de Criptomonedas</a></li>
-    <li><a href="#">Proyecto Calculadora de Propinas (enlace no disponible temporalmente)</a></li>
+    <li><a href="https://ddg-calculadora-propinas.netlify.app/">Proyecto Calculadora de Propinas</a></li>
 </ol>
