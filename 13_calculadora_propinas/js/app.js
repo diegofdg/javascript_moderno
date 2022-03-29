@@ -287,8 +287,57 @@ function formularioPropinas() {
     const heading = document.createElement('H3');
     heading.classList.add('my-4', 'text-center');
     heading.textContent = 'Propina';
+
+    const radio10 = document.createElement('INPUT');
+    radio10.type = "radio";
+    radio10.name = 'propina';
+    radio10.value = "10";
+    radio10.classList.add('form-check-input');
+    
+    const radio10label = document.createElement('LABEL');
+    radio10label.textContent = '10%';
+    radio10label.classList.add('form-check-label');
+
+    const radio10div = document.createElement('DIV');
+    radio10div.classList.add('form-check');
+
+    const radio25 = document.createElement('INPUT');
+    radio25.type = "radio";
+    radio25.name = 'propina';
+    radio25.value = "25";
+    radio25.classList.add('form-check-input');
+    
+    const radio25label = document.createElement('LABEL');
+    radio25label.textContent = '25%';
+    radio25label.classList.add('form-check-label');
+
+    const radio25div = document.createElement('DIV');
+    radio25div.classList.add('form-check');
+
+    const radio50 = document.createElement('INPUT');
+    radio50.type = "radio";
+    radio50.name = 'propina';
+    radio50.value = "50";
+    radio50.classList.add('form-check-input');
+    
+    const radio50label = document.createElement('LABEL');
+    radio50label.textContent = '50%';
+    radio50label.classList.add('form-check-label');
+
+    const radio50div = document.createElement('DIV');
+    radio50div.classList.add('form-check');
+
+    radio10div.appendChild(radio10);
+    radio10div.appendChild(radio10label);
+    radio25div.appendChild(radio25);
+    radio25div.appendChild(radio25label);
+    radio50div.appendChild(radio50);
+    radio50div.appendChild(radio50label);
     
     divFormulario.appendChild(heading);
+    divFormulario.appendChild(radio10div);
+    divFormulario.appendChild(radio25div);
+    divFormulario.appendChild(radio50div);
 
     formulario.appendChild(divFormulario);
 
