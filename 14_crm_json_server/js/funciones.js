@@ -15,4 +15,8 @@ export function mostrarAlerta(mensaje) {
             alerta.remove();
         }, 3000);
     }
-} 
+}
+
+export function validar(cliente) {
+    return !Object.values(cliente).every(input => input !== '');
+}
