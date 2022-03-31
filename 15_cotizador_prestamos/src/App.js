@@ -5,6 +5,7 @@ import Formulario from './componentes/Formulario';
 function App() {
     const [ cantidad, guardarCantidad ] = useState(0);
     const [ plazo, guardarPlazo ] = useState('');
+    const [ total, guardarTotal ] = useState(0);
 
     return (
         <Fragment>
@@ -17,7 +18,10 @@ function App() {
                     guardarCantidad={guardarCantidad}
                     plazo={plazo}
                     guardarPlazo={guardarPlazo}
+                    total={total}
+                    guardarTotal={guardarTotal}
                 />
+                <p>Total a pagar: $ {total}</p>
             </div>
         </Fragment>
     );
