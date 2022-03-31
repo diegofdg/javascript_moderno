@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 const Formulario = ({cantidad, guardarCantidad, plazo, guardarPlazo}) => {
+    const [ error, guardarError ] = useState(false);
+
     const leerCantidad = (e) => {
         guardarCantidad(parseInt(e.target.value));
     }
@@ -9,8 +11,16 @@ const Formulario = ({cantidad, guardarCantidad, plazo, guardarPlazo}) => {
         guardarPlazo(parseInt(e.target.value));
     }
 
+    const calcularPrestamo = (e) => {
+        e.preventDefault();
+
+        if(cantidad === 0 || plazo === '') {
+            guardarError(true);
+        }
+    }
+
     return ( 
-        <form>
+        <form onSubmit={ calcularPrestamo }>
             <div className="row">
                 <div>
                     <label>Cantidad Prestamo</label>
