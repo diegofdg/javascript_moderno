@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { Fragment } from 'react';
 
-const Header = () => {
+const Header = ({ titulo }) => {
     return ( 
-        <h1>Hola Mundo</h1>
+        <Fragment>
+            <h1>{titulo}</h1>            
+        </Fragment>
     );
 }
  
