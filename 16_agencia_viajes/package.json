@@ -6,6 +6,7 @@
   "scripts": {
     "dev": "nodemon index.js"
   },
+  "type": "module",
   "author": "Diego Fabián Di Giorgio",
   "license": "ISC",
   "dependencies": {
