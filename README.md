@@ -20,4 +20,5 @@ Este repositorio contiene todos los proyectos incluidos en el curso "JavaScript 
     <li><a href="https://ddg-cotizador-criptomonedas.netlify.app/">Cotizador de Criptomonedas</a></li>
     <li><a href="https://ddg-calculadora-propinas.netlify.app/">Calculadora de Propinas</a></li>
     <li><a href="https://ddg-indexed-db.netlify.app/">Administrador de Clientes con CRM y JSON Server (mismo link que el proyecto Nº 8)</a></li>
+    <li><a href="https://ddg-calculadora-prestamos.netlify.app/">Calculadora de Préstamos con React</a></li>
 </ol>
