@@ -3,4 +3,25 @@ extends ./layout/index
 block contenido
     main.container.mt-5
         .row
-            h1.text-center.mb-5= pagina
+            .col-md-5
+                img(src="img/nosotros.jpg", alt="imagen sobre nosotros", class="img-fluid")
+            .col.md-7
+                h1 #{pagina}
+                blockquote Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ratione, voluptatibus ad nobis dignissimos reiciendis optio et consequatur ullam! Deleniti ratione similique mollitia blanditiis earum cupiditate placeat aliquam aliquid, dolore vel?
+                p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dolores accusamus deleniti voluptates ex ab, dolorem velit ullam asperiores earum? Et aperiam perferendis eum laboriosam nostrum doloremque quam alias adipisci eos!
+                p Lorem ipsum dolor sit, amet consectetur adipisicing elit. Accusamus, nulla debitis. Nesciunt dolor harum iste omnis sequi quasi beatae et asperiores, nisi possimus obcaecati numquam laudantium impedit perspiciatis officiis! Nihil.
+        .listado-iconos
+            .container.mt-5.py-5.text-center
+                .row
+                    .col-md-4            
+                        img(src="img/icono_seguridad.svg", alt="icono seguridad", class="img-fluid mb-4")
+                        h2.mb-4 Seguridad
+                        p Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo aspernatur omnis provident accusantium minus repellat illum, sequi voluptatum. Earum molestiae eligendi nam similique qui atque? Deleniti quam sapiente repudiandae vel.
+                    .col-md-4            
+                        img(src="img/icono_destinos.svg", alt="icono destinos", class="img-fluid mb-4")
+                        h2.mb-4 Destinos
+                        p Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo aspernatur omnis provident accusantium minus repellat illum, sequi voluptatum. Earum molestiae eligendi nam similique qui atque? Deleniti quam sapiente repudiandae vel.
+                    .col-md-4            
+                        img(src="img/icono_precios.svg", alt="icono precios", class="img-fluid mb-4")
+                        h2.mb-4 Mejores Precios
+                        p Lorem ipsum dolor sit amet consectetur adipisicing elit. Quo aspernatur omnis provident accusantium minus repellat illum, sequi voluptatum. Earum molestiae eligendi nam similique qui atque? Deleniti quam sapiente repudiandae vel.
