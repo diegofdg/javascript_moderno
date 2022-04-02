@@ -17,12 +17,15 @@ const guardarTestimonial = async (req, res) => {
         errores.push({'mensaje': 'Agrega tu Mensaje'})
     }
 
-    if(errores.length > 0 ){                
+    if(errores.length > 0 ){     
+        const testimoniales = await Testimonial.findAll();
+
         res.render('testimoniales', {
             errores,
             nombre,
             correo,
             mensaje,
+            testimoniales,
             pagina: 'Testimoniales'
         });
     } else {
