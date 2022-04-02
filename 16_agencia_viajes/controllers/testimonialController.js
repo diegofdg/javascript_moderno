@@ -15,7 +15,17 @@ const guardarTestimonial = (req, res) => {
         errores.push({'mensaje': 'Agrega tu Mensaje'})
     }
 
-    console.log(errores);
+    if(errores.length > 0 ){                
+        res.render('testimoniales', {
+            errores,
+            nombre,
+            correo,
+            mensaje,
+            pagina: 'Testimoniales'
+        });
+    } else {
+        
+    }
 }
 
 export {
