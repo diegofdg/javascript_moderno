@@ -1,4 +1,6 @@
-const guardarTestimonial = (req, res) => {    
+import { Testimonial } from '../models/Testimonial.js';
+
+const guardarTestimonial = async (req, res) => {    
     let { nombre, correo, mensaje } = req.body;        
 
     let errores = [];
@@ -24,7 +26,16 @@ const guardarTestimonial = (req, res) => {
             pagina: 'Testimoniales'
         });
     } else {
-        
+        try {
+            await Testimonial.create({
+                nombre,
+                correo,
+                mensaje
+            });   
+            res.redirect('/testimoniales');
+        } catch (error) {
+            console.log(error);            
+        }        
     }
 }
 
