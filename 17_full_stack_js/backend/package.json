@@ -1,11 +1,15 @@
 {
   "name": "apv_backend",
   "version": "1.0.0",
+  "type": "module",
   "description": "Aprendiendo JS FullStack",
   "main": "index.js",
   "scripts": {
     "start": "node index.js"
   },
   "author": "Diego Fabián Di Giorgio",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3"
+  }
 }
