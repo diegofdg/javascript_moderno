@@ -54,6 +54,11 @@ const autenticar = async (req, res) => {
         const error = new Error('El usuario no existe');
         return res.status(404).json({msg: error.message});
     }
+
+    if(!usuario.confirmado) {
+        const error = new Error('Tu cuenta no ha sido confirmada');
+        return res.status(404).json({msg: error.message});
+    }
 }
 
 export { registrar, perfil, confirmar, autenticar }
