@@ -15,11 +15,12 @@ const pacienteSchema = mongoose.Schema({
     },
     fecha: {
         type: Date,
-        required: true
+        required: true,
+        default: Date.now()
     },
     sintomas: {
         type: String,
-        required: true        
+        required: true   
     },
     veterinario: {
         type: mongoose.Schema.Types.ObjectId,
