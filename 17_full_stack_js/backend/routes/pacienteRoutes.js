@@ -4,8 +4,9 @@ import checkAuth from '../middleware/authMiddleware.js';
 
 const router = express.Router();
 
-router.route('/')
-    .get(obtenerPaciente)
+router
+    .route('/')
+    .get(checkAuth, obtenerPaciente)
     .post(checkAuth, agregarPaciente);
 
 export default router;
