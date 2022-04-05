@@ -18,7 +18,6 @@ const Login = () => {
                             type="email"
                             placeholder="Email de Registro"
                             className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
-
                         />
                     </div>
                     <div className="my-5">
@@ -31,7 +30,6 @@ const Login = () => {
                             type="password"
                             placeholder="Tu password"
                             className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
-
                         />
                     </div>
                     <input 
