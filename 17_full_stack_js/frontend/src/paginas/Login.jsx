@@ -30,6 +30,7 @@ const Login = () => {
                             type="password"
                             placeholder="Tu password"
                             className="border w-full p-3 mt-3 bg-gray-50 rounded-xl"
+                            autoComplete="on"
                         />
                     </div>
                     <input 
