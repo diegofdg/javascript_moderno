@@ -1,5 +1,7 @@
 import { Outlet, Navigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+import Header from "../components/Header";
+import Footer from "../components/Footer";
 
 const RutaProtegida = () => {
     const { auth, cargando } = useAuth();
@@ -12,8 +14,9 @@ const RutaProtegida = () => {
 
     return (
         <>
-            <h1>RutaProtegida</h1>            
-            { auth.perfil?._id ? <Outlet /> : <Navigate to='/' /> }
+            <Header />
+                { auth.perfil?._id ? <Outlet /> : <Navigate to='/' /> }
+            <Footer />
         </>
     );
 }
