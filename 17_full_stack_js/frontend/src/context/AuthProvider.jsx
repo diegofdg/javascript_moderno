@@ -6,11 +6,13 @@ const AuthContext = createContext();
 const AuthProvider = ({ children }) => {
 
     const [ auth, setAuth ] = useState({});
+    const [ cargando, setCargando ] = useState(true);
 
     useEffect(() => {
         const autenticarUsuario = async () => {
             const token = localStorage.getItem('token');
             if(!token) {
+                setCargando(false);
                 return;
             }
             const config = {
@@ -33,7 +35,9 @@ const AuthProvider = ({ children }) => {
                 });                
             }
 
+            setCargando(false);
         }
+
         autenticarUsuario();
 
     }, []);
@@ -42,7 +46,8 @@ const AuthProvider = ({ children }) => {
         <AuthContext.Provider
             value={{
                 auth,
-                setAuth
+                setAuth,
+                cargando
             }}
         >
             {children}
