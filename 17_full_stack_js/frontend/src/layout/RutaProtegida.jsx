@@ -9,11 +9,12 @@ const RutaProtegida = () => {
     if(cargando) {
         return 'cargando...'
     }
+    console.log(auth);
 
     return (
         <>
             <Header />
-                { auth.veterinario?._id ? (
+                { auth?._id ? (
                     <main className="container mx-auto mt-10">
                         <Outlet /> 
                     </main>
