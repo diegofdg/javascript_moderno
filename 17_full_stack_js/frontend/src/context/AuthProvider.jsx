@@ -15,6 +15,7 @@ const AuthProvider = ({ children }) => {
                 setCargando(false);
                 return;
             }
+
             const config = {
                 headers: {
                     "Content-Type": "application/json",
@@ -24,9 +25,8 @@ const AuthProvider = ({ children }) => {
 
             try {
                 const url = `/veterinarios/perfil`;
-                const { data } = await clienteAxios(url, config);
-                setAuth(data);
-                
+                const { data } = await clienteAxios(url, config);                
+                setAuth(data);                
             } catch (error) {
                 setAuth({});
                 setAlerta({
