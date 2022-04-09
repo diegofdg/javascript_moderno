@@ -8,6 +8,7 @@ const Login = () => {
     const [ email, setEmail ] = useState('');
     const [ password, setPassword ] = useState('');
     const [ alerta, setAlerta ] = useState({});
+    const { auth, setAuth } = useAuth();
     const navigate = useNavigate();
 
     const handleSubmit = async e => {
@@ -22,10 +23,13 @@ const Login = () => {
         }
 
         try {
-            const url = `/veterinarios/login`;
+            const url = '/veterinarios/login';
             const { data } = await clienteAxios.post(url, { email, password });
             localStorage.setItem('token', data.token);
-            navigate('/admin');            
+            setAuth(data);
+            navigate('/admin')
+            
+            
         } catch (error) {
             setAlerta({
                 msg: error.response.data.msg,

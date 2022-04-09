@@ -5,9 +5,7 @@ import Footer from "../components/Footer";
 
 const RutaProtegida = () => {
     const { auth, cargando } = useAuth();
-    console.log(auth.perfil)
-    console.log(cargando)
-
+    
     if(cargando) {
         return 'cargando...'
     }
@@ -15,7 +13,7 @@ const RutaProtegida = () => {
     return (
         <>
             <Header />
-                { auth.perfil?._id ? (
+                { auth?._id ? (
                     <main className="container mx-auto mt-10">
                         <Outlet /> 
                     </main>
