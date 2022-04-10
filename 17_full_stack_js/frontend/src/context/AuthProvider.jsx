@@ -65,11 +65,16 @@ const AuthProvider = ({ children }) => {
         try {
             const url = `/veterinarios/perfil/${datos._id}`;
             const { data } = await clienteAxios.put(url, datos, config);
+            return {
+                msg: 'Almacenado Correctamente'
+            }
 
             
         } catch (error) {
-            console.log(error);
-            
+            return {
+                msg: error.response.data.msg,
+                error: true
+            }            
         }
     }
 
