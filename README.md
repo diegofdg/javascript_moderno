@@ -22,4 +22,5 @@ Este repositorio contiene todos los proyectos incluidos en el curso "JavaScript 
     <li><a href="https://ddg-indexed-db.netlify.app/">Administrador de Clientes con CRM y JSON Server (mismo link que el proyecto Nº 8)</a></li>
     <li><a href="https://ddg-calculadora-prestamos.netlify.app/">Calculadora de Préstamos con React</a></li>
     <li><a href="https://ddg-agencia-viajes.herokuapp.com/">Agencia de Viajes con Node</a></li>
+    <li><a href="https://ddg-apv-frontend.netlify.app/">Proyecto FullStack - Administrador de Pacientes de Veterinaria</a></li>
 </ol>
