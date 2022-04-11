@@ -20,7 +20,7 @@ const corsOptions = {
         if(dominiosPermitidos.indexOf(origin) !== -1) {
             callback(null, true);
         } else {
-            callback(new Error('No permitido por cors'));
+            callback(new Error('No permitido por CORS'));
         }
     }
 }

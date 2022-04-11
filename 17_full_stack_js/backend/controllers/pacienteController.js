@@ -2,14 +2,13 @@ import Paciente from "../models/Paciente.js";
 
 const agregarPaciente = async (req, res) => {
     const paciente = new Paciente(req.body);
-
     paciente.veterinario = req.veterinario._id;
 
     try {
         const pacienteAlmacenado = await paciente.save();
-        res.json({pacienteAlmacenado});        
+        res.json(pacienteAlmacenado);
     } catch (error) {
-        console.log(error);        
+        console.log(error);
     }
 }
 
@@ -22,7 +21,7 @@ const obtenerPaciente = async (req, res) => {
     const { id } = req.params;
     const paciente = await Paciente.findById(id);
 
-    if(!paciente) {        
+    if(!paciente) {
         return res.status(404).json({msg: "No encontrado"});
     }
 
@@ -30,13 +29,13 @@ const obtenerPaciente = async (req, res) => {
         return res.json({msg: 'Acción no válida'});
     }
 
-    res.json(paciente);    
+    res.json(paciente);
 }
 const actualizarPaciente = async (req, res) => {
     const { id } = req.params;
     const paciente = await Paciente.findById(id);
 
-    if(!paciente) {        
+    if(!paciente) {
         return res.status(404).json({msg: "No encontrado"});
     }
 
@@ -52,7 +51,7 @@ const actualizarPaciente = async (req, res) => {
 
     try {
         const pacienteActualizado = await paciente.save();
-        res.json(pacienteActualizado);        
+        res.json(pacienteActualizado);
     } catch (error) {
         console.log(error);
     }
@@ -62,7 +61,7 @@ const eliminarPaciente = async (req, res) => {
     const { id } = req.params;
     const paciente = await Paciente.findById(id);
 
-    if(!paciente) {        
+    if(!paciente) {
         return res.status(404).json({msg: "No encontrado"});
     }
 
@@ -72,10 +71,16 @@ const eliminarPaciente = async (req, res) => {
 
     try {
         await paciente.deleteOne();
-        res.json({msg: 'Paciente eliminado'});        
+        res.json({msg: 'Paciente eliminado'});
     } catch (error) {
         console.log(error);
     }
 }
 
-export { agregarPaciente, obtenerPacientes, obtenerPaciente, actualizarPaciente, eliminarPaciente }
+export {
+    agregarPaciente, 
+    obtenerPacientes, 
+    obtenerPaciente, 
+    actualizarPaciente, 
+    eliminarPaciente
+}

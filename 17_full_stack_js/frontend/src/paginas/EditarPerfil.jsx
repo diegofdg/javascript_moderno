@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import AdminNav from "./AdminNav";
+import AdminNav from "../components/AdminNav";
 import useAuth from "../hooks/useAuth";
 import Alerta from "../components/Alerta";
 
 const EditarPerfil = () => {
-    const { auth, actualizarPerfil } = useAuth();
+    const { auth, setAuth, actualizarPerfil } = useAuth();
     const [ perfil, setPerfil ] = useState({});
     const [ alerta, setAlerta ] = useState({});
 
@@ -14,6 +14,7 @@ const EditarPerfil = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
+
         const { nombre, email } = perfil;
 
         if([nombre, email].includes('')) {
@@ -23,7 +24,9 @@ const EditarPerfil = () => {
             });
             return;
         }
+
         const resultado = await actualizarPerfil(perfil);
+        setAuth(resultado.data.data);
         setAlerta(resultado);
     }
 
@@ -36,7 +39,11 @@ const EditarPerfil = () => {
             <p className="text-xl mt-5 mb-10 text-center">Modifica tu <span className="text-indigo-600 font-bold">Información aquí</span></p>
             <div className="flex justify-center">
                 <div className="w-full md:w-1/2 bg-white shadow rounded-lg p-5">
-                    {msg && <Alerta alerta={alerta} />}
+                    { msg && 
+                        <Alerta
+                            alerta={alerta}
+                        />
+                    }
                     <form
                         onSubmit={handleSubmit}
                     >

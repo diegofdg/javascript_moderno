@@ -7,7 +7,7 @@ const RutaProtegida = () => {
     const { auth, cargando } = useAuth();
     
     if(cargando) {
-        return 'cargando...'
+        return 'Cargando...'
     }
     
     return (
@@ -15,7 +15,7 @@ const RutaProtegida = () => {
             <Header />
                 { auth?._id ? (
                     <main className="container mx-auto mt-10">
-                        <Outlet /> 
+                        <Outlet />
                     </main>
                     ): <Navigate to='/' /> }
             <Footer />

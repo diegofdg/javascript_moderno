@@ -9,7 +9,6 @@ const AdminNav = () => {
             >
                 Perfil
             </Link>
-
             <Link
                 to="/admin/cambiar-password"
                 className="font-bold uppercase text-gray-500"

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AdminNav from "./AdminNav";
+import AdminNav from "../components/AdminNav";
 import Alerta from "../components/Alerta";
 import useAuth from "../hooks/useAuth";
 
@@ -13,6 +13,7 @@ const CambiarPassword = () => {
 
     const handleSubmit = async e => {
         e.preventDefault();
+
         if(Object.values(password).some(campo => campo === '')) {
             setAlerta({
                 msg: 'Todos los campos son obligatorios',
@@ -30,7 +31,7 @@ const CambiarPassword = () => {
         }
 
         const respuesta = await guardarPassword(password);
-        setAlerta(respuesta); 
+        setAlerta(respuesta);
     }
 
     const { msg } = alerta;
@@ -42,7 +43,11 @@ const CambiarPassword = () => {
             <p className="text-xl mt-5 mb-10 text-center">Modifica tu <span className="text-indigo-600 font-bold">Password aquí</span></p>
             <div className="flex justify-center">
                 <div className="w-full md:w-1/2 bg-white shadow rounded-lg p-5">
-                    {msg && <Alerta alerta={alerta} />}
+                    { msg &&
+                        <Alerta
+                            alerta={alerta}
+                        />
+                    }
                     <form
                         onSubmit={handleSubmit}
                     >
@@ -84,7 +89,7 @@ const CambiarPassword = () => {
                 </div>
             </div>
         </>
-    )
+    );
 }
 
 export default CambiarPassword;

@@ -28,9 +28,9 @@ export const PacientesProvider = ({children}) => {
         }
         obtenerPacientes();
 
-    }, [pacientes]);
+    }, []);
 
-    const guardarPaciente = async (paciente) => {
+    const guardarPaciente = async paciente => {
         const token = localStorage.getItem('token');
         const config = {
             headers: {
@@ -43,7 +43,7 @@ export const PacientesProvider = ({children}) => {
             try {
                 const { data } = await clienteAxios.put(`/pacientes/${paciente.id}`, paciente, config);
                 const pacientesActualizados = pacientes.map(pacienteState => pacienteState._id === data._id ? data : pacienteState);
-                //setPacientes(pacientesActualizados);
+                setPacientes(pacientesActualizados);
             } catch (error) {
                 console.log(error);                
             }
@@ -52,7 +52,7 @@ export const PacientesProvider = ({children}) => {
             try {                
                 const { data } = await clienteAxios.post('/pacientes', paciente, config);
                 const { createdAt, updatedAt, __v, ...pacienteAlmacenado } = data;
-                //setPacientes([pacienteAlmacenado, ...pacientes]);
+                setPacientes([pacienteAlmacenado, ...pacientes]);
             } catch (error) {
                 console.log(error);            
             }
@@ -74,9 +74,9 @@ export const PacientesProvider = ({children}) => {
                         Authorization: `Bearer ${token}`
                     }
                 }
-                const { data } = await clienteAxios.delete(`/pacientes/${id}`, config);
+                await clienteAxios.delete(`/pacientes/${id}`, config);
                 const pacientesActualizados = pacientes.filter( pacientesState => pacientesState._id !== id);
-                //setPacientes(pacientesActualizados);                
+                setPacientes(pacientesActualizados);                
             } catch (error) {
                 console.log(error);                
             }

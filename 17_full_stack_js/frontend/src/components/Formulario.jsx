@@ -19,7 +19,7 @@ const Formulario = () => {
             setNombre(paciente.nombre);
             setPropietario(paciente.propietario);
             setEmail(paciente.email);
-            setFecha(paciente.fecha);
+            setFecha(formatearFecha(paciente.fecha));
             setSintomas(paciente.sintomas);
             setId(paciente._id);
         }
@@ -28,6 +28,7 @@ const Formulario = () => {
 
     const handleSubmit = e => {
         e.preventDefault();
+
         if([nombre, propietario, email, fecha, sintomas].includes('')) {
             setAlerta({
                 msg: 'Todos los campos son obligatorios',
@@ -37,15 +38,19 @@ const Formulario = () => {
         }
         
         guardarPaciente({ nombre, propietario, email, fecha, sintomas, id });
-        setAlerta({
-            msg: 'Guardado Correctamente'
-        });
+
+        setAlerta({ msg: 'Guardado Correctamente' });
+        
         setNombre('');
         setPropietario('');
         setEmail('');
         setFecha('');
         setSintomas('');
         setId('');
+    }
+
+    const formatearFecha = (fechaOriginal) => {
+        return new Date(fechaOriginal).toISOString().slice(0, 10);                
     }
 
     const { msg } = alerta;
@@ -59,11 +64,11 @@ const Formulario = () => {
                 onSubmit={handleSubmit}
             >
                 <div className="mb-5">
-                    <label 
+                    <label
                         htmlFor="nombre"
                         className="text-gray-700 uppercase font-bold"
                     >Nombre Mascota</label>
-                    <input 
+                    <input
                         id="nombre"
                         type="text"
                         placeholder="Nombre de la mascota"
@@ -74,11 +79,11 @@ const Formulario = () => {
                 </div>
 
                 <div className="mb-5">
-                    <label 
+                    <label
                         htmlFor="propietario"
                         className="text-gray-700 uppercase font-bold"
                     >Nombre Propietario</label>
-                    <input 
+                    <input
                         id="propietario"
                         type="text"
                         placeholder="Nombre del propietario"
@@ -89,11 +94,11 @@ const Formulario = () => {
                 </div>
 
                 <div className="mb-5">
-                    <label 
+                    <label
                         htmlFor="email"
                         className="text-gray-700 uppercase font-bold"
                     >Email Propietario</label>
-                    <input 
+                    <input
                         id="email"
                         type="email"
                         placeholder="Email del Propietario"
@@ -104,11 +109,11 @@ const Formulario = () => {
                 </div>
 
                 <div className="mb-5">
-                    <label 
+                    <label
                         htmlFor="fecha"
                         className="text-gray-700 uppercase font-bold"
                     >Fecha Alta</label>
-                    <input 
+                    <input
                         id="fecha"
                         type="date"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
@@ -118,11 +123,11 @@ const Formulario = () => {
                 </div>
 
                 <div className="mb-5">
-                    <label 
+                    <label
                         htmlFor="sintomas"
                         className="text-gray-700 uppercase font-bold"
                     >Síntomas</label>
-                    <textarea 
+                    <textarea
                         id="sintomas"
                         placeholder="Describe los síntomas"
                         className="border-2 w-full p-2 mt-2 placeholder-gray-400 rounded-md"
@@ -137,7 +142,11 @@ const Formulario = () => {
                     value={ id ? "Guardar cambios" : "Agregar Paciente"}
                 />
             </form>
-            {msg && <Alerta alerta={alerta}/>}
+            { msg && 
+                <Alerta
+                    alerta={alerta}
+                />
+            }
         </>
     );
   }

@@ -4,9 +4,11 @@ const Paciente = ({ paciente }) => {
     const { setEdicion, eliminarPaciente } = usePacientes();
     const { nombre, propietario, email, fecha, sintomas, _id } = paciente;
     
-    const formatearFecha = (fechaOriginal) => {
+    const formatearFecha = (fechaOriginal) => {    
         const nuevaFecha = new Date(fechaOriginal);
-        return new Intl.DateTimeFormat('es', {dateStyle: 'long'}).format(nuevaFecha);
+        const nuevaFechaFormateada = new Date(nuevaFecha.getTime());
+        nuevaFechaFormateada.setDate(nuevaFechaFormateada.getDate() + 1);
+        return new Intl.DateTimeFormat('es-AR', {dateStyle: 'long'}).format(nuevaFechaFormateada);
     }
 
     return (
@@ -14,20 +16,24 @@ const Paciente = ({ paciente }) => {
             <p className="font-bold uppercase text-indigo-700 my-2">Nombre: <span className="font-normal normal-case text-black">{nombre}</span></p>
             <p className="font-bold uppercase text-indigo-700 my-2">Propietario: <span className="font-normal normal-case text-black">{propietario}</span></p>
             <p className="font-bold uppercase text-indigo-700 my-2">Email Contacto: <span className="font-normal normal-case text-black">{email}</span></p>
-            {<p className="font-bold uppercase text-indigo-700 my-2">Fecha de Alta: <span className="font-normal normal-case text-black">{formatearFecha(fecha)}</span></p>}
+            <p className="font-bold uppercase text-indigo-700 my-2">Fecha de Alta: <span className="font-normal normal-case text-black">{formatearFecha(fecha)}</span></p>
             <p className="font-bold uppercase text-indigo-700 my-2">Síntomas: <span className="font-normal normal-case text-black">{sintomas}</span></p>
             <div className="flex justify-between my-5">
                 <button
                     type="button"
                     className="py-2 px-10 bg-indigo-600 hover:bg-indigo-700 text-white uppercase font-bold rounded-lg"
                     onClick={() => setEdicion(paciente)}
-                >Editar</button>
+                >
+                    Editar
+                </button>
                 <button
                     type="button"
                     className="py-2 px-10 bg-red-600 hover:bg-red-700 text-white uppercase font-bold rounded-lg"
                     onClick={() => eliminarPaciente(_id)}
-                >Eliminar</button>                
-            </div>            
+                >
+                    Eliminar
+                </button>
+            </div>  
         </div>
     );
 }

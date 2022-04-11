@@ -3,7 +3,6 @@ import ListadoPacientes from "../components/ListadoPacientes";
 import Formulario from "../components/Formulario";
 
 const AdministrarPacientes = () => {
-
     const [ mostrarFormulario, setMostrarFormulario ] = useState(false);
 
     return (
