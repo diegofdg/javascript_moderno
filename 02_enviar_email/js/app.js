@@ -25,14 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
   btnReset.addEventListener('click', function(e) {
     e.preventDefault();
 
-    // Reiniciar el formulario
-    email.email = '';
-    email.asunto = '';
-    email.mensaje = '';
-    
-    formulario.reset();
-
-    comprobarEmail();
+    resetFormulario();
   });
 
   function enviarEmail(e) {
@@ -40,6 +33,12 @@ document.addEventListener('DOMContentLoaded', function() {
 
     spinner.classList.add('flex');
     spinner.classList.remove('hidden');
+
+    setTimeout(()=>{
+      spinner.classList.remove('flex');
+      spinner.classList.add('hidden');
+      resetFormulario();
+    }, 3000);
 
   }
 
@@ -101,5 +100,16 @@ document.addEventListener('DOMContentLoaded', function() {
     } 
     btnSubmit.classList.remove('opacity-50');
     btnSubmit.disabled = false;
+  }
+
+  function resetFormulario() {
+    // Reiniciar el formulario
+    email.email = '';
+    email.asunto = '';
+    email.mensaje = '';
+    
+    formulario.reset();
+
+    comprobarEmail();
   }
 });
