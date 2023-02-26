@@ -8,6 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Seleccionar los elementos de la interfaz
   const inputEmail = document.querySelector('#email');
+  const inputCc = document.querySelector('#cc');
   const inputAsunto = document.querySelector('#asunto');
   const inputMensaje = document.querySelector('#mensaje');
   const formulario = document.querySelector('#formulario');
@@ -19,6 +20,7 @@ document.addEventListener('DOMContentLoaded', function() {
   inputEmail.addEventListener('input', validar);
   inputAsunto.addEventListener('input', validar);
   inputMensaje.addEventListener('input', validar);
+  inputCc.addEventListener('input', validarCc);
 
   formulario.addEventListener('submit', enviarEmail);
 
@@ -123,4 +125,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     comprobarEmail();
   }
+
+  function validarCc(e){
+    email[e.target.name] = e.target.value.trim().toLowerCase();
+
+    if(!validarEmail(e.target.value)){
+      mostrarAlerta('El email copia no es válido', e.target.parentElement);
+      email[e.target.name] = '';
+      comprobarEmail();
+    } else {
+      limpiarAlerta(e.target.parentElement);
+      comprobarEmail();
+    };
+
+    if(e.target.value === ''){
+      delete email.cc;
+      limpiarAlerta(e.target.parentElement);
+      comprobarEmail();
+      return;
+    };
+  };
 });
