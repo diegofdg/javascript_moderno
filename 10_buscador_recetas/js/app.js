@@ -1,6 +1,7 @@
 function iniciarApp() {
 
-  const selectCategoria = document.querySelector('#categorias')
+  const selectCategoria = document.querySelector('#categorias');
+  selectCategoria.addEventListener('change', seleccionarCategoria);
 
   obtenerCategorias();
 
@@ -19,6 +20,14 @@ function iniciarApp() {
       option.textContent = strCategory;
       selectCategoria.appendChild(option);
     })
+
+  }
+
+  function seleccionarCategoria(e) {
+    const categoria = e.target.value;
+
+    const url = `https://www.themealdb.com/api/json/v1/1/filter.php?c=${categoria}`;
+    console.log(url);
 
   }
 }
