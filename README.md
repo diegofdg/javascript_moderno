@@ -15,7 +15,7 @@ Este repositorio contiene todos los proyectos incluidos en el curso "JavaScript 
     <li><a href="https://ddg-administrar-citas.netlify.app/">Administrador de Pacientes de Veterinaria</a></li>
     <li><a href="https://ddg-indexed-db.netlify.app/">Administrador de Clientes con CRM</a></li>
     <li><a href="https://ddg-clima.netlify.app/">Buscador de Clima</a></li>
-    <li><a href="https://ddg-buscador-canciones.netlify.app/">Buscador de Canciones</a></li>
+    <li><a href="https://ddg-buscador-recetas.netlify.app/">Buscador de Recetas</a></li>
     <li><a href="https://ddg-buscador-imagenes.netlify.app/">Buscador de Imágenes</a></li>
     <li><a href="https://ddg-cotizador-criptomonedas.netlify.app/">Cotizador de Criptomonedas</a></li>
     <li><a href="https://ddg-calculadora-propinas.netlify.app/">Calculadora de Propinas</a></li>
