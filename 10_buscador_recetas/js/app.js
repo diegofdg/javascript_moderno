@@ -1,11 +1,20 @@
 function iniciarApp() {
 
-  const selectCategoria = document.querySelector('#categorias');
-  selectCategoria.addEventListener('change', seleccionarCategoria);
   const resultado = document.querySelector('#resultado');
-  const modal = new bootstrap.Modal('#modal', {});
 
-  obtenerCategorias();
+  const selectCategoria = document.querySelector('#categorias');
+  if(selectCategoria) {
+    selectCategoria.addEventListener('change', seleccionarCategoria);
+    obtenerCategorias();
+  }
+
+  const favoritosDiv = document.querySelector('.favoritos');
+
+  if(favoritosDiv) {
+      obtenerFavoritos();
+  }
+
+  const modal = new bootstrap.Modal('#modal', {});  
 
   function obtenerCategorias() {
     const url = 'https://www.themealdb.com/api/json/v1/1/categories.php';
@@ -22,7 +31,6 @@ function iniciarApp() {
       option.textContent = strCategory;
       selectCategoria.appendChild(option);
     })
-
   }
 
   function seleccionarCategoria(e) {
@@ -32,7 +40,6 @@ function iniciarApp() {
     fetch(url)
       .then(respuesta => respuesta.json())
       .then(resultado => mostrarRecetas(resultado.meals))
-
   }
 
   function mostrarRecetas(recetas = []) {
@@ -42,7 +49,7 @@ function iniciarApp() {
     heading.classList.add('text-center', 'text-black', 'my-5');
     heading.textContent = recetas.length ? 'Resultados': 'No Hay Resultados';
     resultado.appendChild(heading);
-
+    
     // Iterar en los resultados
     recetas.forEach(receta => {
       const { idMeal, strMeal, strMealThumb } = receta;
@@ -56,7 +63,7 @@ function iniciarApp() {
       const recetaImagen = document.createElement('IMG');
       recetaImagen.classList.add('card-img-top');
       recetaImagen.alt = `Imagen de la receta ${strMeal ?? receta.titulo}`;
-      recetaImagen.src = strMealThumb;
+      recetaImagen.src = strMealThumb ?? receta.img;
 
       const recetaCardBody = document.createElement('DIV');
       recetaCardBody.classList.add('card-body');
@@ -71,10 +78,9 @@ function iniciarApp() {
       // recetaButton.dataset.bsTarget = "#modal";
       // recetaButton.dataset.bsToggle = "modal";
       recetaButton.onclick = function() {
-        seleccionarReceta(idMeal);
+        seleccionarReceta(idMeal ?? receta.id);
       }
 
-     
       // Inyectar en el código HTML
       recetaCardBody.appendChild(recetaHeading);
       recetaCardBody.appendChild(recetaButton);
@@ -91,14 +97,14 @@ function iniciarApp() {
   function seleccionarReceta(id) {
     const url = `https://www.themealdb.com/api/json/v1/1/lookup.php?i=${id}`;
     fetch(url)
-        .then(respuesta => respuesta.json())
-        .then(resultado => mostrarRecetaModal(resultado.meals[0]))
+      .then(respuesta => respuesta.json())
+      .then(resultado => mostrarRecetaModal(resultado.meals[0]))
   }
 
   function mostrarRecetaModal(receta) {
 
     const { idMeal, strInstructions, strMeal, strMealThumb } = receta;
-        
+   
     // Añadir contenido al modal
     const modalTitle = document.querySelector('.modal .modal-title');
     const modalBody = document.querySelector('.modal .modal-body');
@@ -113,7 +119,6 @@ function iniciarApp() {
 
     const listGroup = document.createElement('UL');
     listGroup.classList.add('list-group');
-
     // Mostrar cantidades e ingredientes
     for(let i = 1; i <= 20; i++ ) {
       if(receta[`strIngredient${i}`]) {
@@ -125,7 +130,7 @@ function iniciarApp() {
         ingredienteLi.textContent = `${ingrediente} - ${cantidad}`
 
         listGroup.appendChild(ingredienteLi);
-        }
+      }
     }
 
     modalBody.appendChild(listGroup);
@@ -195,14 +200,24 @@ function iniciarApp() {
     toast.show();
   }
 
+  function obtenerFavoritos() {
+    const favoritos = JSON.parse(localStorage.getItem('favoritos')) ?? [];
+    if(favoritos.length) {
+      mostrarRecetas(favoritos);
+      return
+    } 
 
+    const noFavoritos = document.createElement('P');
+    noFavoritos.textContent = 'No hay favoritos aún';
+    noFavoritos.classList.add('fs-4', 'text-center', 'font-bold', 'mt-5');
+    favoritosDiv.appendChild(noFavoritos);
+  }
 
   function limpiarHtml(selector) {
     while(selector.firstChild) {
         selector.removeChild(selector.firstChild);
     }
   }
-
 }
 
 document.addEventListener('DOMContentLoaded', iniciarApp);
