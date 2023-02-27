@@ -137,18 +137,34 @@ function iniciarApp() {
     btnFavorito.classList.add('btn', 'btn-danger', 'col');
     btnFavorito.textContent = 'Guardar Favorito';
 
+    // localstorage
+    btnFavorito.onclick = function() {
+      agregarFavorito({
+        id: idMeal,
+        titulo: strMeal,
+        img: strMealThumb
+      });
+
+      btnFavorito.textContent = 'Eliminar Favorito';
+    }
+
     const btnCerrarModal = document.createElement('BUTTON');
     btnCerrarModal.classList.add('btn', 'btn-secondary', 'col');
     btnCerrarModal.textContent = 'Cerrar';
     btnCerrarModal.onclick = function() {
       modal.hide();
     }
-    
+
     modalFooter.appendChild(btnFavorito);
     modalFooter.appendChild(btnCerrarModal);
 
     // Muestra el modal
     modal.show();
+  }
+
+  function agregarFavorito(receta) {
+    const favoritos = JSON.parse(localStorage.getItem('favoritos')) ?? [];
+    localStorage.setItem('favoritos', JSON.stringify([...favoritos, receta]));
   }
 
   function limpiarHtml(selector) {
