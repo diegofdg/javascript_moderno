@@ -5,7 +5,7 @@ function App() {
   const [ cantidad, setCantidad ] = useState(10000);
 
   function handleChange(e) {
-    console.log(Number(e.target.value));
+    setCantidad(Number(e.target.value));
   }
 
   
@@ -17,6 +17,8 @@ function App() {
         className="w-full h-6 bg-gray-200 accent-lime-500 hover:accent-lime-600"
         onChange={handleChange}
       />
+
+      <p className="text-center my-10 text-5xl font-extrabold text-indigo-600">{cantidad}</p>
     </div>
   )
 }
