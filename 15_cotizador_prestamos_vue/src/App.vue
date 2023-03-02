@@ -8,11 +8,8 @@
   });
 
   function handleChange(e) {
-    cantidad.value = +e.target.value;
+    state.cantidad = +e.target.value;
   }
-
-  console.log(cantidad.value);
-  console.log(state.cantidad);
 
 </script>
 
@@ -27,7 +24,7 @@
         v-on:input="handleChange"
       />
 
-      {{ cantidad }}
+      {{ state.cantidad }}
     </div>
   </div>
 </template>
