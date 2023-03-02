@@ -8,7 +8,7 @@
   });
 
   function handleChange(e) {
-    console.log(e.target.value);
+    cantidad.value = +e.target.value;
   }
 
   console.log(cantidad.value);
@@ -26,6 +26,8 @@
         class="w-full bg-gray-200 accent-lime-500 hover:accent-lime-600"
         v-on:input="handleChange"
       />
+
+      {{ cantidad }}
     </div>
   </div>
 </template>
