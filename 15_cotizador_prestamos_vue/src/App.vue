@@ -12,13 +12,13 @@
   const MAX = 20000;
   const STEP = 100;
 
-  const formatearDinero = computed( () => {
+  const formatearDinero = (valor) => {
     const formatter = new Intl.NumberFormat('es-AR', {
       style: 'currency',
       currency: 'ARS'
     });
-    return formatter.format(cantidad.value);
-  });
+    return formatter.format(valor);
+  };
 
   function handleChangeDecremento() {
     const valor = cantidad.value - STEP;
@@ -67,7 +67,7 @@
         v-model.number="cantidad"
       />
       <p class="text-center my-10 text-5xl font-extrabold text-indigo-600">
-        {{ formatearDinero }}
+        {{ formatearDinero(cantidad) }}
       </p>
 
       <h2 class="text-2xl font-extrabold text-gray-500 text-center">
@@ -89,7 +89,7 @@
           </h2>
 
           <p class="text-xl text-gray-500 text-center font-bold">{{meses}} Meses</p>
-          <p class="text-xl text-gray-500 text-center font-bold">Total a pagar: {{ total }}</p>
+          <p class="text-xl text-gray-500 text-center font-bold">Total a pagar: {{ formatearDinero(total) }}</p>
           <p class="text-xl text-gray-500 text-center font-bold">Mensuales:</p>
       </div>
 
