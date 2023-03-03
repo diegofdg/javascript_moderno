@@ -46,11 +46,11 @@
     <div className="flex justify-between my-6">
       <Button
         :operador="'-'"
-        :fn="handleChangeDecremento"
+        @fn="handleChangeDecremento"
       />
       <Button
         :operador="'+'"
-        :fn="handleChangeIncremento"
+        @fn="handleChangeIncremento"
       />
     </div>
 
