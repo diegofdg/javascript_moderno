@@ -16,11 +16,49 @@
     return formatter.format(cantidad.value);
   });
 
+  function handleChangeDecremento() {
+    const valor = cantidad.value - STEP;
+
+    if(cantidad.value <= MIN) {
+      alert('Cantidad no válida');
+      return;
+    }
+    cantidad.value = valor;
+  }
+
+  function handleChangeIncremento() {
+    const valor = cantidad.value - STEP;
+
+    if(cantidad.value >= MAX) {
+      alert('Cantidad no válida');
+      return;
+    }
+    cantidad.value = valor;
+  }
+
 </script>
 
 <template>
   <div class="my-20 max-w-lg mx-auto bg-white shadow p-10">
     <Header />
+
+    <div className="flex justify-between my-6">
+      <button
+        type="button"
+        className="h-10 w-10 flex items-center justify-center font-bold bg-lime-500 rounded-full hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-lime-500 text-white text-2xl"
+        @click="handleChangeDecremento"
+      >
+        -
+      </button>
+      <button
+        type="button"
+        className="h-10 w-10 flex items-center justify-center font-bold bg-lime-500 rounded-full hover:outline-none hover:ring-2 hover:ring-offset-2 hover:ring-lime-500 text-white text-2xl"
+        @click="handleChangeIncremento"
+      >
+        +
+      </button>
+    </div>
+
 
     <div class="my-5">
       <input
